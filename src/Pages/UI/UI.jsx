@@ -156,12 +156,14 @@ const UI = () => {
                 }
                 setexpress(express + expression);
                 setcurrent("");
+                setstartzero("false");
             }
             else {
                 setexpress(express.substring(0, express.length - 1) + expression);
                 if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
                     setprev(prev.toString() + "dot" + "ope");
                 }
+                setstartzero("false");
                 setcurrent("");
 
             }
