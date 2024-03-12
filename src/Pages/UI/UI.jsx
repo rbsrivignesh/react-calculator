@@ -7,16 +7,16 @@ import { act } from 'react-dom/test-utils';
 
 const UI = () => {
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
-    const audio = new Audio(click)
-    audio.volume = 0.05;
-    const buttons = document.querySelectorAll(".result");
+    // const audio = new Audio(click)
+    // audio.volume = 0.05;
+    // const buttons = document.querySelectorAll(".result");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
+    // buttons.forEach(button => {
+    //     button.addEventListener("click", () => {
 
-            audio.play();
-        });
-    });
+    //         audio.play();
+    //     });
+    // });
     const [express, setexpress] = useState("")
     const [current, setcurrent] = useState("")
     const [startzero, setstartzero] = useState("");
@@ -32,6 +32,10 @@ const UI = () => {
 
             try {
                 const strings = express.toString();
+                if (strings === "143") {
+                    alert("சூத்த மூடிட்டு இருக்க மாட்டியா ? ")
+                }
+
                 console.log(strings.toString().substring(strings.toString().length - 1) + " " + prev.toString());
                 if (prev.toString().substring(prev.toString().length - 3) === "ope") {
                     setexpress("");
@@ -66,7 +70,7 @@ const UI = () => {
 
     }
     const deletes = () => {
-        if (express.toString() === "error") {
+        if (express.toString() === "error" || express.toString() === "Infinity" || express.toString() === "NaN") {
             setprev("");
             setcurrent("");
             setexpress("");
