@@ -3,6 +3,7 @@ import './UI.css';
 import Keys from '../../Components/Keys/Keys'
 import Keyss from '../../Components/Keyss/Keyss'
 import click from '../../Components/audio/click.mp3'
+
 import { act } from 'react-dom/test-utils';
 
 const UI = () => {
@@ -21,6 +22,7 @@ const UI = () => {
     const [current, setcurrent] = useState("")
     const [startzero, setstartzero] = useState("");
     const [prev, setprev] = useState("");
+    const [mul, setmul] = useState("");
 
     useEffect(() => {
         console.log(express + " >>");
@@ -137,6 +139,7 @@ const UI = () => {
             }
         }
         else if (action === "operator") {
+
             if (prev.toString() === "dot") {
 
             }
@@ -166,25 +169,51 @@ const UI = () => {
                 console.log(express.toString().substring(express.length - 1));
                 if (express.toString().substring(express.length - 1) === "*") {
                     if (expression === "+" || expression === "-") {
-                        setprev(prev.toString()+"ope");
+                        setprev(prev.toString() + "ope");
                         setcurrent("");
                         setstartzero("false");
-                        setexpress(express+expression);
+                        setexpress(express + expression);
+                        setmul("true");
+
+
+                    }
+                    else {
+
+                        setexpress(express.substring(0, express.length - 1) + expression);
+                        if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
+                            setprev(prev.toString() + "dot" + "ope");
+                        }
+                        setstartzero("false");
+                        setcurrent("");
+                        console.log(prev.toString());
 
                     }
                 }
-                else{
-
-                    setexpress(express.substring(0, express.length - 1) + expression);
-                    if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
-                        setprev(prev.toString() + "dot" + "ope");
+                else {
+                    if (mul.toString() === "true") {
+                        setexpress(express.substring(0, express.length - 2) + expression);
+                        if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
+                            setprev(prev.toString() + "dot" + "ope");
+                        }
+                        setstartzero("false");
+                        setcurrent("");
+                        setmul("false");
+                        console.log(prev.toString())
                     }
-                    setstartzero("false");
-                    setcurrent("");
-                    console.log(prev.toString());
-                    
+                    else {
+
+                        setexpress(express.substring(0, express.length - 1) + expression);
+                        if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
+                            setprev(prev.toString() + "dot" + "ope");
+                        }
+                        setstartzero("false");
+                        setcurrent("");
+                        console.log(prev.toString());
+                    }
+
                 }
-                }
+
+            }
         }
         else if (action === "dot") {
             if (prev.toString().length === 0 && express.toString().includes(".")) {
@@ -194,7 +223,7 @@ const UI = () => {
             else if (!express.toString().includes(".") || !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot") {
 
                 setexpress(express + expression);
-                setprev(prev+"dot");
+                setprev(prev + "dot");
                 setcurrent("dot");
                 setstartzero("false");
             }
@@ -239,24 +268,25 @@ const UI = () => {
                         </div>
                     </div>
                     <div className="rows">
-                        <div className='clickable' onClick={() => { func_click("num", "1") }}>
-                            <Keys id={1} value={1} />
+                        <div className='clickable' onClick={() => { func_click("num", "7") }}>
+                            <Keys id={7} value={7} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("num", "2") }}>
-                            <Keys id={2} value={2} />
+                        <div className='clickable' onClick={() => { func_click("num", "8") }}>
+                            <Keys id={8} value={8} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("num", "3") }}>
-                            <Keys id={3} value={3} />
+                        <div className='clickable' onClick={() => { func_click("num", "9") }}>
+                            <Keys id={9} value={9} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("operator", "-") }}>
-                            <Keys id={"-"} value={"-"} />
+                        <div className='clickable' onClick={() => { func_click("operator", "/") }}>
+                            <Keys id={"/"} value={"/"} />
                         </div>
 
 
                     </div>
+
                     <div className="rows">
                         <div className='clickable' onClick={() => { func_click("num", "4") }}>
                             <Keys id={4} value={4} />
@@ -276,24 +306,25 @@ const UI = () => {
 
                     </div>
                     <div className="rows">
-                        <div className='clickable' onClick={() => { func_click("num", "7") }}>
-                            <Keys id={7} value={7} />
+                        <div className='clickable' onClick={() => { func_click("num", "1") }}>
+                            <Keys id={1} value={1} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("num", "8") }}>
-                            <Keys id={8} value={8} />
+                        <div className='clickable' onClick={() => { func_click("num", "2") }}>
+                            <Keys id={2} value={2} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("num", "9") }}>
-                            <Keys id={9} value={9} />
+                        <div className='clickable' onClick={() => { func_click("num", "3") }}>
+                            <Keys id={3} value={3} />
 
                         </div>
-                        <div className='clickable' onClick={() => { func_click("operator", "/") }}>
-                            <Keys id={"/"} value={"/"} />
+                        <div className='clickable' onClick={() => { func_click("operator", "-") }}>
+                            <Keys id={"-"} value={"-"} />
                         </div>
 
 
                     </div>
+
                     <div className="rows">
                         <div className='clickable' onClick={() => { }}>
                             <Keys id={"sci"} value={"sci"} />
