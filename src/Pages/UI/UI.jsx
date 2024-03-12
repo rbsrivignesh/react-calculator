@@ -163,14 +163,28 @@ const UI = () => {
                 setstartzero("false");
             }
             else {
-                setexpress(express.substring(0, express.length - 1) + expression);
-                if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
-                    setprev(prev.toString() + "dot" + "ope");
-                }
-                setstartzero("false");
-                setcurrent("");
+                console.log(express.toString().substring(express.length - 1));
+                if (express.toString().substring(express.length - 1) === "*") {
+                    if (expression === "+" || expression === "-") {
+                        setprev(prev.toString()+"ope");
+                        setcurrent("");
+                        setstartzero("false");
+                        setexpress(express+expression);
 
-            }
+                    }
+                }
+                else{
+
+                    setexpress(express.substring(0, express.length - 1) + expression);
+                    if (!(prev.toString().substring(prev.toString().length - 6, prev.toString().length - 3) === "dot")) {
+                        setprev(prev.toString() + "dot" + "ope");
+                    }
+                    setstartzero("false");
+                    setcurrent("");
+                    console.log(prev.toString());
+                    
+                }
+                }
         }
         else if (action === "dot") {
             if (prev.toString().length === 0 && express.toString().includes(".")) {
@@ -180,7 +194,7 @@ const UI = () => {
             else if (!express.toString().includes(".") || !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot") {
 
                 setexpress(express + expression);
-                setprev("dot");
+                setprev(prev+"dot");
                 setcurrent("dot");
                 setstartzero("false");
             }
