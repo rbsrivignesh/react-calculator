@@ -9,7 +9,7 @@ const UI = () => {
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
     const audio = new Audio(click)
     audio.volume = 0.05;
-    const buttons = document.querySelectorAll("div");
+    const buttons = document.querySelectorAll("span");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
@@ -191,90 +191,90 @@ const UI = () => {
 
                 </div>
                 <div className='allkeys'>
-                    {/* <div onClick={()=>{ const val=express;console.log(express);setexpress(val+""+1)}}> */}
+                    {/* <div className='clickable' onClick={()=>{ const val=express;console.log(express);setexpress(val+""+1)}}> */}
                     <div className="row1">
-                        <div onClick={() => { func_click("clear", "") }}>
+                        <div className='clickable' onClick={() => { func_click("clear", "") }}>
                             <Keyss id={"C"} value={"C"} />
                         </div>
-                        <div onClick={() => { deletes() }}>
+                        <div className='clickable' onClick={() => { deletes() }}>
                             <Keyss id={"del"} value={"del"} />
                         </div>
-                        <div onClick={() => { func_click("operator", "%") }}>
+                        <div className='clickable' onClick={() => { func_click("operator", "%") }}>
                             <Keys id={"%"} value={"%"} />
                         </div>
-                        <div onClick={() => { func_click("operator", "+") }}>
+                        <div className='clickable' onClick={() => { func_click("operator", "+") }}>
                             <Keys id={"+"} value={"+"} />
 
                         </div>
                     </div>
                     <div className="rows">
-                        <div onClick={() => { func_click("num", "1") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "1") }}>
                             <Keys id={1} value={1} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "2") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "2") }}>
                             <Keys id={2} value={2} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "3") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "3") }}>
                             <Keys id={3} value={3} />
 
                         </div>
-                        <div onClick={() => { func_click("operator", "-") }}>
+                        <div className='clickable' onClick={() => { func_click("operator", "-") }}>
                             <Keys id={"-"} value={"-"} />
                         </div>
 
 
                     </div>
                     <div className="rows">
-                        <div onClick={() => { func_click("num", "4") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "4") }}>
                             <Keys id={4} value={4} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "5") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "5") }}>
                             <Keys id={5} value={5} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "6") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "6") }}>
                             <Keys id={6} value={6} />
 
                         </div>
-                        <div onClick={() => { func_click("operator", "*") }}>
+                        <div className='clickable' onClick={() => { func_click("operator", "*") }}>
                             <Keys id={"*"} value={"*"} />
                         </div>
 
                     </div>
                     <div className="rows">
-                        <div onClick={() => { func_click("num", "7") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "7") }}>
                             <Keys id={7} value={7} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "8") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "8") }}>
                             <Keys id={8} value={8} />
 
                         </div>
-                        <div onClick={() => { func_click("num", "9") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "9") }}>
                             <Keys id={9} value={9} />
 
                         </div>
-                        <div onClick={() => { func_click("operator", "/") }}>
+                        <div className='clickable' onClick={() => { func_click("operator", "/") }}>
                             <Keys id={"/"} value={"/"} />
                         </div>
 
 
                     </div>
                     <div className="rows">
-                        <div onClick={() => { }}>
+                        <div className='clickable' onClick={() => { }}>
                             <Keys id={"sci"} value={"sci"} />
                         </div>
-                        <div onClick={() => { func_click("num", "0") }}>
+                        <div className='clickable' onClick={() => { func_click("num", "0") }}>
                             <Keys id={"0"} value={"0"} />
                         </div>
-                        <div onClick={() => { func_click("dot", ".") }}>
+                        <div className='clickable' onClick={() => { func_click("dot", ".") }}>
                             <Keys id={"."} value={"."} />
                         </div>
 
-                        <div onClick={() => { calc() }}>
+                        <div className='clickable' onClick={() => { calc() }}>
                             <Keyss id={"="} value={"="} />
                         </div>
                     </div>
