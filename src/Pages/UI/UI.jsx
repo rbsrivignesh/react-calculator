@@ -28,32 +28,33 @@ const UI = () => {
     const calc = () => {
 
         if (express.toString().length !== 0) {
-            
-            
+
+
             try {
                 const strings = express.toString();
-                console.log(strings.toString().substring(strings.toString().length-1)+" "+prev.toString());
-                if(prev.toString().substring(prev.toString().length-3) ==="ope"){
+                console.log(strings.toString().substring(strings.toString().length - 1) + " " + prev.toString());
+                if (prev.toString().substring(prev.toString().length - 3) === "ope") {
                     setexpress("");
                     setprev("");
                     setcurrent("");
-                    
-                }
-                else{
-                if (strings.includes("%")) {
-                    // let ans = eval(strings);
-                    console.log("working")
-                    let anss = strings.replace("%", "*(1/100)*");
-                    console.log(anss + ",.,");
-                    let ans = eval(anss);
-                    setexpress(ans);
-                    setprev("");
+
                 }
                 else {
-                    let ans = eval(express);
-                    setprev("");
-                    setexpress(ans);
-                }}
+                    if (strings.includes("%")) {
+                        // let ans = eval(strings);
+                        console.log("working")
+                        let anss = strings.replace("%", "*(1/100)*");
+                        console.log(anss + ",.,");
+                        let ans = eval(anss);
+                        setexpress(ans);
+                        setprev("");
+                    }
+                    else {
+                        let ans = eval(express);
+                        setprev("");
+                        setexpress(ans);
+                    }
+                }
 
             }
             catch (err) {
