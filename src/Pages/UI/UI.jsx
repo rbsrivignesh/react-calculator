@@ -9,7 +9,7 @@ const UI = () => {
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
     const audio = new Audio(click)
     audio.volume = 0.05;
-    const buttons = document.querySelectorAll("span");
+    const buttons = document.querySelectorAll(".result");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
@@ -26,10 +26,20 @@ const UI = () => {
         console.log(express + " >>");
     }, [express])
     const calc = () => {
-        if (express.toString().length !== 0) {
 
+        if (express.toString().length !== 0) {
+            
+            
             try {
                 const strings = express.toString();
+                console.log(strings.toString().substring(strings.toString().length-1)+" "+prev.toString());
+                if(prev.toString().substring(prev.toString().length-3) ==="ope"){
+                    setexpress("");
+                    setprev("");
+                    setcurrent("");
+                    
+                }
+                else{
                 if (strings.includes("%")) {
                     // let ans = eval(strings);
                     console.log("working")
@@ -43,7 +53,7 @@ const UI = () => {
                     let ans = eval(express);
                     setprev("");
                     setexpress(ans);
-                }
+                }}
 
             }
             catch (err) {
@@ -193,10 +203,10 @@ const UI = () => {
                 <div className='allkeys'>
                     {/* <div className='clickable' onClick={()=>{ const val=express;console.log(express);setexpress(val+""+1)}}> */}
                     <div className="row1">
-                        <div className='clickable' onClick={() => { func_click("clear", "") }}>
+                        <div className='result' onClick={() => { func_click("clear", "") }}>
                             <Keyss id={"C"} value={"C"} />
                         </div>
-                        <div className='clickable' onClick={() => { deletes() }}>
+                        <div className='result' onClick={() => { deletes() }}>
                             <Keyss id={"del"} value={"del"} />
                         </div>
                         <div className='clickable' onClick={() => { func_click("operator", "%") }}>
@@ -274,7 +284,7 @@ const UI = () => {
                             <Keys id={"."} value={"."} />
                         </div>
 
-                        <div className='clickable' onClick={() => { calc() }}>
+                        <div className='result' onClick={() => { calc() }}>
                             <Keyss id={"="} value={"="} />
                         </div>
                     </div>
