@@ -132,12 +132,14 @@ const UI = () => {
             setexpress("");
         }
         else {
+            if(equal!=="true"){
 
-            setprev(previous.toString().substring(0, previous.toString().length - 3));
-            if (previous.toString().substring(previous.toString().length - 3, previous.toString().length) === "dot") {
-                setcurrent("dot");
                 setprev(previous.toString().substring(0, previous.toString().length - 3));
-
+                if (previous.toString().substring(previous.toString().length - 3, previous.toString().length) === "dot") {
+                    setcurrent("dot");
+                    setprev(previous.toString().substring(0, previous.toString().length - 3));
+    
+                }
             }
             const strings = expressing.toString();
             console.log(previous.toString());
@@ -160,7 +162,7 @@ const UI = () => {
 
     }
     const func_click = (action, expression) => {
-
+        console.log(express+ ".."+prev+".."+action+".."+expression);
         setresult("");
 
         if (equal.toString() === "true") {
