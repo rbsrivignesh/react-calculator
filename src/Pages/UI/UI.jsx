@@ -15,7 +15,7 @@ const UI = () => {
 
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
     const audio = new Audio(soup)
-    audio.volume = 0.05;
+    audio.volume = 0.5;
     const buttons = document.querySelectorAll(".result");
 
     // buttons.forEach(button => {
