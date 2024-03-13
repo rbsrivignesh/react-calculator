@@ -1,9 +1,14 @@
-import React from 'react'
-
-const CalculatorContext = () => {
+import React, { useState } from 'react'
+import { createContext } from 'react'
+export const CalculatorContext = createContext(null);
+const CalculatorContextProvider = (props)=>{
+  const [express, setexpress] = useState("");
+  const contextValue = { express, setexpress };
   return (
-    <div>CalculatorContext</div>
+    <CalculatorContext.Provider value={contextValue}>
+      {props.children}
+    </CalculatorContext.Provider>
   )
-}
 
-export default CalculatorContext
+}
+export default CalculatorContextProvider;

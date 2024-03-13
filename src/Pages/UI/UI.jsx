@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './UI.css';
 import Keys from '../../Components/Keys/Keys'
 import Keyss from '../../Components/Keyss/Keyss'
 import click from '../../Components/audio/click.mp3'
+import soup from '../../Components/audio/soup.mpeg'
+import { CalculatorContext } from '../../Context/CalculatorContext';
+import { Route,Router } from 'react-router-dom';
 
-import { act } from 'react-dom/test-utils';
+
+
+
 
 const UI = () => {
+
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
-    // const audio = new Audio(click)
-    // audio.volume = 0.05;
-    // const buttons = document.querySelectorAll(".result");
+    const audio = new Audio(soup)
+    audio.volume = 0.05;
+    const buttons = document.querySelectorAll(".result");
 
     // buttons.forEach(button => {
     //     button.addEventListener("click", () => {
@@ -18,16 +24,29 @@ const UI = () => {
     //         audio.play();
     //     });
     // });
-    const [express, setexpress] = useState("")
+    const {express,setexpress}=useContext(CalculatorContext)
+    const [equal, setequal] = useState("");
+    // const [express, setexpress] = useState("")
     const [current, setcurrent] = useState("")
     const [startzero, setstartzero] = useState("");
     const [prev, setprev] = useState("");
     const [mul, setmul] = useState("");
+    const menu = useRef();
+    const menu1 = useRef();
+    const [result, setresult] = useState("");
+    const [prevexpress, setprevexpress] = useState("");
+    const [prevsafe, setprevsafe] = useState("");
 
     useEffect(() => {
-        console.log(express + " >>");
+
     }, [express])
     const calc = () => {
+        if (express.toString().length !== 0 && equal !== "true") {
+
+            menu.current.classList.toggle("equals_express");
+            menu1.current.classList.toggle("equals_result");
+        }
+
 
         if (express.toString().length !== 0) {
 
@@ -35,7 +54,15 @@ const UI = () => {
             try {
                 const strings = express.toString();
                 if (strings === "143") {
-                    alert("சூத்த மூடிட்டு இருக்க மாட்டியா ? ")
+                    audio.play();
+                    setTimeout(() => {
+
+                        alert("சூத்த மூடிட்டு இருக்க மாட்டியாடா ?  ");
+                    }, 500)
+
+
+
+
                 }
 
                 console.log(strings.toString().substring(strings.toString().length - 1) + " " + prev.toString());
@@ -52,13 +79,22 @@ const UI = () => {
                         let anss = strings.replace("%", "*(1/100)*");
                         console.log(anss + ",.,");
                         let ans = eval(anss);
+                        setprevexpress(express);
                         setexpress(ans);
+                        setresult(ans);
+                        setprevsafe(prev);
                         setprev("");
+                        setequal("true");
                     }
                     else {
                         let ans = eval(express);
+                        setprevsafe(prev);
                         setprev("");
+                        setresult(ans);
+
+                        setprevexpress(express);
                         setexpress(ans);
+                        setequal("true");
                     }
                 }
 
@@ -72,6 +108,24 @@ const UI = () => {
 
     }
     const deletes = () => {
+        // setresult("");
+        var expressing = express.toString();
+        var previous = prev.toString();
+        if (equal === "true") {
+            // const anss = result.toString().substring(0, result.toString().length - 1); setresult(anss)
+            setexpress(prevexpress);
+            console.log(express + "  ???")
+            setresult("");
+            setprev(prevsafe);
+            previous = prevsafe;
+            console.log(prev.toString() + "  is this working")
+            menu.current.classList.toggle("equals_express");
+            menu1.current.classList.toggle("equals_result");
+           
+            expressing = prevexpress.toString();
+
+        }
+        
         if (express.toString() === "error" || express.toString() === "Infinity" || express.toString() === "NaN") {
             setprev("");
             setcurrent("");
@@ -79,25 +133,41 @@ const UI = () => {
         }
         else {
 
-
-            setprev(prev.toString().substring(0, prev.toString().length - 3));
-            if (prev.toString().substring(prev.toString().length - 3, prev.toString().length) === "dot") {
+            setprev(previous.toString().substring(0, previous.toString().length - 3));
+            if (previous.toString().substring(previous.toString().length - 3, previous.toString().length) === "dot") {
                 setcurrent("dot");
-                setprev(prev.toString().substring(0, prev.toString().length - 3));
+                setprev(previous.toString().substring(0, previous.toString().length - 3));
 
             }
-            const strings = express.toString();
-            console.log(prev.toString());
-
+            const strings = expressing.toString();
+            console.log(previous.toString());
+            
+           
             if (strings.length !== undefined) {
                 // if(strings==="error")
-
-                const ans = strings.substring(0, strings.length - 1); setexpress(ans)
+                if(equal==="true"){
+                    setequal("false");
+                    var ans = strings.substring(0, strings.length); setexpress(ans)
+                    
+                }
+                else{
+                    var ans = strings.substring(0, strings.length-1); setexpress(ans)
+                 
+                }
+                console.log("working ???")
             }
         }
 
     }
     const func_click = (action, expression) => {
+
+        setresult("");
+
+        if (equal.toString() === "true") {
+            menu.current.classList.toggle("equals_express");
+            menu1.current.classList.toggle("equals_result");
+            setequal("false");
+        }
         console.log(action + " " + expression + " " + prev.toString());
         if (action === "num") {
             console.log("num working");
@@ -233,9 +303,22 @@ const UI = () => {
             setexpress("");
             setprev("");
             setcurrent("");
+            setresult("");
         }
     }
 
+    const sci = () => {
+        menu.current.classList.toggle("equals_express");
+        // console.dir(keyspan);
+    }
+    const valueUpdate = () => {
+        if (equal === "true") {
+            return prevexpress.toString();
+        }
+        else {
+            return express.toString();
+        }
+    }
     return (
         <div className="ui">
             <div className="cal">
@@ -247,7 +330,17 @@ const UI = () => {
                     <input type="text" id='calc-result' className='form-value' value={result}/>
 
                 </div> */}
-                    <button id='express'>{express}</button>
+                    <div className='expression'>
+
+                        <input ref={menu} type="text" id='express' value={valueUpdate()} placeholder='calculator' onChange={() => {
+                            valueUpdate();
+                        }} />
+                    </div>
+                    <div className='resultexpression'>
+
+                        <input ref={menu1} type="text" id='result' value={result} />
+                    </div>
+                    {/* <button id='express'>{express}</button> */}
 
                 </div>
                 <div className='allkeys'>
@@ -326,7 +419,7 @@ const UI = () => {
                     </div>
 
                     <div className="rows">
-                        <div className='clickable' onClick={() => { }}>
+                        <div className='clickable' onClick={() => { sci() }}>
                             <Keys id={"sci"} value={"sci"} />
                         </div>
                         <div className='clickable' onClick={() => { func_click("num", "0") }}>
