@@ -213,7 +213,7 @@ const UI = () => {
         else if (action === "operator") {
             var str = expression.toString();
             console.log(typeof str + " " + expression + " " + expression.includes("+"));
-            if (express.toString().length == 1 && (express.toString() === "+" || express.toString() === "-") && ( !expression.includes("+") && !expression.includes("-"))) {
+            if (express.toString().length == 1 && (express.toString() === "+" || express.toString() === "-") && (!expression.includes("+") && !expression.includes("-"))) {
                 // console.log(express + "...express");
                 // console.log(expression + "...expression");
                 // const exp = express;
@@ -228,10 +228,9 @@ const UI = () => {
                 // console.log(typeof expression);
                 // console.log(express.toString().length == 1);
                 // console.log(express.toString() === "+" || express.toString() === "-");
-                // console.log(".=." + expression.toString() !== "+" || expressio
-                n.toString() !== "-");
+                // console.log(".=." + expression.toString() !== "+" || expression.toString() !== "-");
                 // console.log(".=." + expression.toString() + "..." + expression.toString() !== "-");
-                
+
             }
             else if (prev.toString() === "dot") {
 
