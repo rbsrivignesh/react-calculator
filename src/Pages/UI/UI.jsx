@@ -5,7 +5,7 @@ import Keyss from '../../Components/Keyss/Keyss'
 import click from '../../Components/audio/click.mp3'
 import soup from '../../Components/audio/soup.mpeg'
 import { CalculatorContext } from '../../Context/CalculatorContext';
-import { Route,Router } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 
 
 
@@ -24,7 +24,7 @@ const UI = () => {
     //         audio.play();
     //     });
     // });
-    const {express,setexpress}=useContext(CalculatorContext)
+    const { express, setexpress } = useContext(CalculatorContext)
     const [equal, setequal] = useState("");
     // const [express, setexpress] = useState("")
     const [current, setcurrent] = useState("")
@@ -121,40 +121,40 @@ const UI = () => {
             console.log(prev.toString() + "  is this working")
             menu.current.classList.toggle("equals_express");
             menu1.current.classList.toggle("equals_result");
-           
+
             expressing = prevexpress.toString();
 
         }
-        
+
         if (express.toString() === "error" || express.toString() === "Infinity" || express.toString() === "NaN") {
             setprev("");
             setcurrent("");
             setexpress("");
         }
         else {
-            if(equal!=="true"){
+            if (equal !== "true") {
 
                 setprev(previous.toString().substring(0, previous.toString().length - 3));
                 if (previous.toString().substring(previous.toString().length - 3, previous.toString().length) === "dot") {
                     setcurrent("dot");
                     setprev(previous.toString().substring(0, previous.toString().length - 3));
-    
+
                 }
             }
             const strings = expressing.toString();
             console.log(previous.toString());
-            
-           
+
+
             if (strings.length !== undefined) {
                 // if(strings==="error")
-                if(equal==="true"){
+                if (equal === "true") {
                     setequal("false");
                     var ans = strings.substring(0, strings.length); setexpress(ans)
-                    
+
                 }
-                else{
-                    var ans = strings.substring(0, strings.length-1); setexpress(ans)
-                 
+                else {
+                    var ans = strings.substring(0, strings.length - 1); setexpress(ans)
+
                 }
                 console.log("working ???")
             }
@@ -162,7 +162,7 @@ const UI = () => {
 
     }
     const func_click = (action, expression) => {
-        console.log(express+ ".."+prev+".."+action+".."+expression);
+        console.log(express + ".." + prev + ".." + action + ".." + expression);
         setresult("");
 
         if (equal.toString() === "true") {
@@ -211,12 +211,33 @@ const UI = () => {
             }
         }
         else if (action === "operator") {
+            var str = expression.toString();
+            console.log(typeof str + " " + expression + " " + expression.includes("+"));
+            if (express.toString().length == 1 && (express.toString() === "+" || express.toString() === "-") && ( !expression.includes("+") && !expression.includes("-"))) {
+                // console.log(express + "...express");
+                // console.log(expression + "...expression");
+                // const exp = express;
+                // const expr = expression;
+                // console.log(exp + " testing " + expr + " " + typeof exp);
+                // console.log("expr === " + expr);
+                // console.log(expr === "+" + "is this working ");
+                // console.log("expr === " + expr);
+                // console.log(expr === "-" + "is this working ");
+                // console.log(exp + " testing " + expr + " " + typeof expr);
 
-            if (prev.toString() === "dot") {
+                // console.log(typeof expression);
+                // console.log(express.toString().length == 1);
+                // console.log(express.toString() === "+" || express.toString() === "-");
+                // console.log(".=." + expression.toString() !== "+" || expressio
+                n.toString() !== "-");
+                // console.log(".=." + expression.toString() + "..." + expression.toString() !== "-");
+                
+            }
+            else if (prev.toString() === "dot") {
 
             }
 
-            else if ((express.toString().length === 0) && prev.toString().length === 0) {
+            else if ((express.toString().length === 0) || prev.toString().length === 0) {
                 // else if(prev.toString().length === 0) {
                 if (expression === "+" || expression === "-") {
                     setprev(prev.toString() + "ope");
