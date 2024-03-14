@@ -5,14 +5,17 @@ import Keyss from '../../Components/Keyss/Keyss'
 import click from '../../Components/audio/click.mp3'
 import soup from '../../Components/audio/soup.mpeg'
 import { CalculatorContext } from '../../Context/CalculatorContext';
-import { Route, Router } from 'react-router-dom';
+import { Link, Route, Router } from 'react-router-dom';
+import Test from '../Test';
 
 
 
 
 
 const UI = () => {
-
+    <Router />
+    const arry = [];
+    var test = 0;
     // const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
     const audio = new Audio(soup)
     audio.volume = 0.5;
@@ -37,26 +40,40 @@ const UI = () => {
     //     });
     // });
     const { express, setexpress } = useContext(CalculatorContext)
-    const [equal, setequal] = useState("");
-    // const [express, setexpress] = useState("")
-    const [current, setcurrent] = useState("")
-    const [startzero, setstartzero] = useState("");
-    const [prev, setprev] = useState("");
-    const [mul, setmul] = useState("");
+    const { arrayy, setarrayy } = useContext(CalculatorContext);
+    const { equal, setequal } = useContext(CalculatorContext);
+    // const {express, setexpress} = useState("")
+    const { current, setcurrent } = useContext(CalculatorContext);
+    const { startzero, setstartzero } = useContext(CalculatorContext);
+    const { prev, setprev } = useContext(CalculatorContext);
+    const { mul, setmul } = useContext(CalculatorContext);
     const menu = useRef();
     const menu1 = useRef();
-    const [result, setresult] = useState("");
-    const [prevexpress, setprevexpress] = useState("");
-    const [prevsafe, setprevsafe] = useState("");
+    const { result, setresult } = useContext(CalculatorContext);
+    const { prevexpress, setprevexpress } = useContext(CalculatorContext);
+    const { prevsafe, setprevsafe } = useContext(CalculatorContext);
+    const { hist, sethist } = useContext(CalculatorContext);
+    var count = 0;
+    var exp = document.getElementById("expresss");
+    var res = document.getElementById("resultt");
+    // useEffect(() => {
+    //     // exp = document.getElementById("express");
+    //     // res = document.getElementById("result");
 
-    useEffect(() => {
-
-    }, [express])
+    // }, [express])
     const calc = () => {
+        console.log(menu.current);
         if (express.toString().length !== 0 && equal !== "true") {
+            console.log("working outside");
+            if (exp != undefined) {
+                console.log("working inside");
 
-            menu.current.classList.toggle("equals_express");
-            menu1.current.classList.toggle("equals_result");
+                exp.classList.toggle("equals_express")
+                res.classList.toggle("equals_result")
+            }
+
+            // menu.current.classList.toggle("equals_express");
+            // menu1.current.classList.toggle("equals_result");
         }
 
 
@@ -64,6 +81,15 @@ const UI = () => {
 
 
             try {
+                // setarrayy([...arrayy,{expr:express,prev:prev}]);
+                // setarrayy(oldarray => [...oldarray, { exp: express, equal: equal, current: current, startzero: startzero, prev: prev, mul: mul, result: result, prevexpress: prevexpress, prevsafe: prevsafe }]);
+                console.log(arrayy);
+                // let obj = { expr: express };
+                // console.log(obj);
+                // test+=count++ +"";
+                // arry.push(count++);
+                // console.log(arry);
+                // console.log(test);
                 const strings = express.toString();
                 if (strings === "143") {
                     audio.play();
@@ -83,6 +109,7 @@ const UI = () => {
                     setprev("");
                     setcurrent("");
 
+
                 }
                 else {
                     if (strings.includes("%")) {
@@ -97,6 +124,7 @@ const UI = () => {
                         setprevsafe(prev);
                         setprev("");
                         setequal("true");
+                        setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: "", mul: mul, result: ans, prevexpress: express, prevsafe: prevsafe }]);
                     }
                     else {
                         let ans = eval(express);
@@ -107,6 +135,7 @@ const UI = () => {
                         setprevexpress(express);
                         setexpress(ans);
                         setequal("true");
+                        setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: prev, mul: mul, result: result, prevexpress: prevexpress, prevsafe: prevsafe }]);
                     }
                 }
 
@@ -118,6 +147,11 @@ const UI = () => {
         }
 
 
+    }
+    if (hist === "true") {
+        console.log("running");
+        calc();
+        sethist("falsey");
     }
     const deletes = () => {
         // setresult("");
@@ -131,8 +165,11 @@ const UI = () => {
             setprev(prevsafe);
             previous = prevsafe;
             console.log(prev.toString() + "  is this working")
-            menu.current.classList.toggle("equals_express");
-            menu1.current.classList.toggle("equals_result");
+            if (hist !== "falsey") {
+
+                menu.current.classList.toggle("equals_express");
+                menu1.current.classList.toggle("equals_result");
+            }
 
             expressing = prevexpress.toString();
 
@@ -148,7 +185,7 @@ const UI = () => {
 
                 setprev(previous.toString().substring(0, previous.toString().length - 3));
                 if (previous.toString().substring(previous.toString().length - 3, previous.toString().length) === "dot") {
-                    setcurrent("dot");
+                    setcurrent("");
                     setprev(previous.toString().substring(0, previous.toString().length - 3));
 
                 }
@@ -178,7 +215,8 @@ const UI = () => {
         console.log(express + ".." + prev + ".." + action + ".." + expression);
         setresult("");
         let prevsafes = prev.toString();
-        if (equal.toString() === "true") {
+        console.log(hist);
+        if (equal.toString() === "true" && hist !== "falsey") {
             menu.current.classList.toggle("equals_express");
             menu1.current.classList.toggle("equals_result");
             setprev(prevsafe);
@@ -187,6 +225,12 @@ const UI = () => {
             // setexpress();
             setequal("false");
         }
+        if (hist === "falsey") {
+            setprev(prevsafe);
+            prevsafes = prevsafe.toString();
+            setequal("false");
+        }
+        sethist("false");
         console.log(action + " " + expression + " " + prev.toString());
         if (action === "num") {
             console.log("num working");
@@ -255,16 +299,16 @@ const UI = () => {
             }
 
             else if ((express.toString().length === 0) && prevsafe.length === 0 && prev.toString().length === 0) {
-               
 
-                    // else if(prev.toString().length === 0) {
-                    if (expression === "+" || expression === "-") {
-                        setprev(prev.toString() + "ope");
-                        setexpress(express + expression);
-                        setcurrent("");
-                    }
-                    console.log("working");
-                
+
+                // else if(prev.toString().length === 0) {
+                if (expression === "+" || expression === "-") {
+                    setprev(prev.toString() + "ope");
+                    setexpress(express + expression);
+                    setcurrent("");
+                }
+                console.log("working");
+
             }
             else if (!((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "ope")) {
                 console.log("operator working");
@@ -330,12 +374,17 @@ const UI = () => {
             }
         }
         else if (action === "dot") {
+            console.log(current);
+            console.log(!express.toString().includes("."));
+            console.log((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot");
+            console.log(current.toString() !== "dot");
+            // console.log(!express.toString().includes(".") +" "+ !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot");
             if (prev.toString().length === 0 && express.toString().includes(".")) {
 
                 console.log("dot working");
             }
             else if (!express.toString().includes(".") || !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot") {
-
+                console.log("dot not working");
                 setexpress(express + expression);
                 setprev(prev + "dot");
                 setcurrent("dot");
@@ -365,6 +414,11 @@ const UI = () => {
     }
     return (
         <div className="ui">
+            <div onClick={() => {
+                menu.current.classList.toggle("equals_express");
+                // menu1.current.classList.toggle("equals_result");
+            }}>
+                <Link to={"/hist"}><button>history</button></Link></div>
             <div className="cal">
                 <div className='answer'>
                     {/* <div className='expression'>
@@ -376,13 +430,13 @@ const UI = () => {
                 </div> */}
                     <div className='expression'>
 
-                        <input ref={menu} type="text" id='express' value={valueUpdate()} placeholder='calculator' onChange={() => {
+                        <input ref={menu} type="text" id='expresss' value={valueUpdate()} placeholder='calculator' onChange={() => {
                             valueUpdate();
                         }} />
                     </div>
                     <div className='resultexpression'>
 
-                        <input ref={menu1} type="text" id='result' value={result} />
+                        <input ref={menu1} type="text" id='resultt' value={result} />
                     </div>
                     {/* <button id='express'>{express}</button> */}
 

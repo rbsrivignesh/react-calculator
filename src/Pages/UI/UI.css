@@ -1,4 +1,4 @@
-#express {
+#expresss {
     height: 50px;
     /* width: 344px; */
     width: 100%;
@@ -81,12 +81,13 @@ input {
     color: white;
 }
 
-#result {
+#resultt {
     display: flex;
     align-items: end;
     height: 30px;
     width: 200px;
     text-align: end;
+    font-size: 35px;
 }
 
 .cal {

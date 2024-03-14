@@ -1,13 +1,14 @@
 
 import UI from './Pages/UI/UI'
 import './App.css';
+import Main from './Pages/Main';
 
 
 function App() {
   return (
     
       <div className="App">
-        <UI />
+     <Main/>
       </div>
 
   
