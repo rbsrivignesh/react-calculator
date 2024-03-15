@@ -1,0 +1,19 @@
+.history-result {
+    background-color: #473a3a;
+}
+
+.history-express {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+
+
+/* .history-tiles {
+    display: flex;
+    flex-direction: column;
+} */
+.history-individual:hover {
+    transform: scale(1);
+}

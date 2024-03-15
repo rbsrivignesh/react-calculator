@@ -8,9 +8,11 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 25px;
-    background: black;
-    color: #fe7f00;
+    font-size: 29px;
+    /* background: black;
+     */
+    background: #201e1e;
+    color: #ff8c00;
     border-radius: 20px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -18,6 +20,15 @@
 
 }
 
+.history-button {
+    display: none;
+}
+
+.history-button-btn {
+    border: none;
+    color: transparent;
+    background: transparent;
+}
 
 
 .allkeys {
@@ -29,7 +40,9 @@
     padding: 15px;
     height: 300px;
     justify-content: space-evenly;
-    background: linear-gradient(#e66465, #9198e5);
+    /* background: linear-gradient(#e66465, #9198e5);
+     */
+    background-color: black;
     border-radius: 20px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -64,21 +77,29 @@
 .answer {
     display: flex;
     flex-direction: column;
+    border: 10px solid black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+
 }
 
 .resultexpression {
     display: flex;
     justify-content: end;
-    background-color: black;
+    background: #201e1e;
+    /* background-color: black; */
 
 
 }
 
 input {
+    background: #201e1e;
+
     z-index: 999;
     border: none;
-    background-color: black;
-    color: white;
+    /* background-color: black; */
+    color: rgb(222, 48, 48);
 }
 
 #resultt {
@@ -87,13 +108,18 @@ input {
     height: 30px;
     width: 200px;
     text-align: end;
+    font-weight: 700;
     font-size: 35px;
+    /* border-bottom-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+    border: 1px solid black; */
 }
 
 .cal {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    border: 5px grey;
 }
 
 .turnred {
@@ -101,10 +127,28 @@ input {
 }
 
 .equals_express {
-    font-size: 20px !important;
+    font-size: 25px !important;
 }
 
 .equals_result {
-    font-size: 35px !important;
+    font-size: 32px !important;
 
+}
+
+.history-show {
+    /* font-size: 30px; */
+
+    display: block;
+}
+
+.history-button-btn-show {
+    color: rgb(224, 24, 24);
+    font-size: 30px;
+    font-weight: 600;
+}
+
+input:active {
+    background: #201e1e;
+    border: transparent;
+    /* border: none; */
 }

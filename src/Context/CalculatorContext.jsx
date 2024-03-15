@@ -14,7 +14,9 @@ const CalculatorContextProvider = (props)=>{
   const [result, setresult] = useState("");
   const [prevexpress, setprevexpress] = useState("");
   const [prevsafe, setprevsafe] = useState("");
-  const contextValue = { express, setexpress,arrayy,setarrayy ,equal,setequal,current,setcurrent,setstartzero,startzero,prev,setprev,mul,setmul,result,setresult,prevexpress,setprevexpress,prevsafe,setprevsafe,sethist,hist};
+  const [click,setclick]=useState("false");
+  const [testt,settest]=useState("false");
+  const contextValue = { settest,testt,express, setexpress,arrayy,setarrayy ,equal,setequal,current,setcurrent,setstartzero,startzero,prev,setprev,mul,setmul,result,setresult,prevexpress,setprevexpress,prevsafe,setprevsafe,sethist,hist,click,setclick};
   return (
     <CalculatorContext.Provider value={contextValue}>
       {props.children}

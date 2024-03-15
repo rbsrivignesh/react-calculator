@@ -1,0 +1,53 @@
+.history {
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    margin: auto;
+    height: 100vh;
+    width: 300px;
+    /* height: 300px; */
+    color: white;
+    /* transform: rotate(180deg); */
+}
+
+.history-rows {
+    display: flex;
+}
+
+.history-col {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.history-header {
+    position: sticky;
+    margin-bottom: 10px;
+    color: burlywood;
+
+}
+
+.history-values-box {
+    overflow: auto;
+    /* scroll-behavior: auto;
+    overscroll-behavior: auto; */
+    /* transform: rotate(180deg); */
+    height: 60vh;
+}
+
+.back-button {
+    margin-top: 33px;
+    margin-left: 170px;
+    background: none;
+    color: red;
+    font-size: 20px;
+    font-weight: 1000;
+
+
+}
+
+.back-button :hover {
+    transform: scale(1.5);
+}

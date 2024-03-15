@@ -6,6 +6,7 @@ import click from '../../Components/audio/click.mp3'
 import soup from '../../Components/audio/soup.mpeg'
 import { CalculatorContext } from '../../Context/CalculatorContext';
 import { Link, Route, Router } from 'react-router-dom';
+import history_icon from '../../Components/audio/download.png'
 import Test from '../Test';
 
 
@@ -49,10 +50,15 @@ const UI = () => {
     const { mul, setmul } = useContext(CalculatorContext);
     const menu = useRef();
     const menu1 = useRef();
+    const menu2 = useRef();
+    const menu3 = useRef();
     const { result, setresult } = useContext(CalculatorContext);
     const { prevexpress, setprevexpress } = useContext(CalculatorContext);
     const { prevsafe, setprevsafe } = useContext(CalculatorContext);
     const { hist, sethist } = useContext(CalculatorContext);
+    const { click, setclick } = useContext(CalculatorContext);
+    const { testt, settest } = useContext(CalculatorContext);
+    console.log(click);
     var count = 0;
     var exp = document.getElementById("expresss");
     var res = document.getElementById("resultt");
@@ -124,9 +130,14 @@ const UI = () => {
                         setprevsafe(prev);
                         setprev("");
                         setequal("true");
-                        setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: "", mul: mul, result: ans, prevexpress: express, prevsafe: prevsafe }]);
+                        if (hist !== "true") {
+                            sethist("falsey");
+                            console.log("working in 1");
+                            setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: "", mul: mul, result: ans, prevexpress: express, prevsafe: prevsafe }]);
+                        }
                     }
                     else {
+                        // sethist("falsey");
                         let ans = eval(express);
                         setprevsafe(prev);
                         setprev("");
@@ -135,7 +146,11 @@ const UI = () => {
                         setprevexpress(express);
                         setexpress(ans);
                         setequal("true");
-                        setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: prev, mul: mul, result: result, prevexpress: prevexpress, prevsafe: prevsafe }]);
+                        if (hist !== "true") {
+
+                            console.log("working in 2");
+                            setarrayy(oldarray => [...oldarray, { exp: express, equal: "false", current: current, startzero: startzero, prev: prev, mul: mul, result: ans, prevexpress: prevexpress, prevsafe: prevsafe }]);
+                        }
                     }
                 }
 
@@ -158,6 +173,7 @@ const UI = () => {
         var expressing = express.toString();
         var previous = prev.toString();
         if (equal === "true") {
+
             // const anss = result.toString().substring(0, result.toString().length - 1); setresult(anss)
             setexpress(prevexpress);
             console.log(express + "  ???")
@@ -165,7 +181,8 @@ const UI = () => {
             setprev(prevsafe);
             previous = prevsafe;
             console.log(prev.toString() + "  is this working")
-            if (hist !== "falsey") {
+            // if(click)
+            if (hist !== "falsey" && click == "true") {
 
                 menu.current.classList.toggle("equals_express");
                 menu1.current.classList.toggle("equals_result");
@@ -216,20 +233,55 @@ const UI = () => {
         setresult("");
         let prevsafes = prev.toString();
         console.log(hist);
+        console.log(click.toString());
+        console.log(testt);
+        console.log(click !== "true" || testt !== "true");
+        // if (equal.toString() === "true" && hist !== "falsey" && click !== "true") {
+        // if(click!=="true" || test!=="true"){
+        //     setprev(prevsafe);
+        //     prevsafes = prevsafe.toString();
+        //     console.log("workinggg  new condition");
+
+        //     menu.current.classList.toggle("equals_express");
+        //     menu1.current.classList.toggle("equals_result");
+        // }
+
+        // else 
         if (equal.toString() === "true" && hist !== "falsey") {
-            menu.current.classList.toggle("equals_express");
-            menu1.current.classList.toggle("equals_result");
+
+            // if (equal.toString() === "true" && hist !== "falsey" &&  testt !== "true") {
             setprev(prevsafe);
             prevsafes = prevsafe.toString();
-
+            console.log("workinggg");
             // setexpress();
             setequal("false");
+            // if(click==="")
+            menu.current.classList.toggle("equals_express");
+            menu1.current.classList.toggle("equals_result");
         }
         if (hist === "falsey") {
             setprev(prevsafe);
             prevsafes = prevsafe.toString();
             setequal("false");
         }
+        if (click === "true") {
+            prevsafes = prevsafe.toString();
+
+            setclick("false");
+        }
+        if (test === "false") {
+            // settest("true");
+        }
+        // if (click === "true") {
+        //     setclick("false");
+        //     menu.current.classList.toggle("equals_express");
+        //     menu1.current.classList.toggle("equals_result");
+        //     setprev(prevsafe);
+        //     prevsafes = prevsafe.toString();
+        //     setequal("false");
+
+        // }
+
         sethist("false");
         console.log(action + " " + expression + " " + prev.toString());
         if (action === "num") {
@@ -374,22 +426,22 @@ const UI = () => {
             }
         }
         else if (action === "dot") {
-            console.log(current);
-            console.log(!express.toString().includes("."));
-            console.log((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot");
-            console.log(current.toString() !== "dot");
-            console.log(express );
-            console.log(express.includes("."));
+            // console.log(current);
+            // console.log(!express.toString().includes("."));
+            // console.log((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot");
+            // console.log(current.toString() !== "dot");
+            // console.log(express);
+            // console.log(express.includes("."));
             // console.log(!express.toString().includes(".") +" "+ !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot");
             if (prev.toString().length === 0 && express.toString().includes(".")) {
 
                 console.log("dot working");
             }
-            else if(!prev.toString().includes("ope") && express.toString().includes(".")){
+            else if (!prev.toString().includes("ope") && express.toString().includes(".")) {
 
             }
             else if (!express.toString().includes(".") || !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot") {
-            
+
                 console.log("dot not working");
                 setexpress(express + expression);
                 setprev(prev + "dot");
@@ -403,6 +455,15 @@ const UI = () => {
             setprev("");
             setcurrent("");
             setresult("");
+            setarrayy([]);
+            setprevexpress("");
+            setequal("");
+            setprevsafe("");
+            setmul("");
+            setstartzero("");
+            setclick("");
+            sethist("");
+            settest("");
         }
     }
 
@@ -418,25 +479,20 @@ const UI = () => {
             return express.toString();
         }
     }
+
     return (
         <div className="ui">
-            <div onClick={() => {
-                menu.current.classList.toggle("equals_express");
+            <div ref={menu2} className='history-button' onClick={() => {
+                menu.current.classList.toggle("equals_express"); menu2.current.classList.toggle("history-show")
                 // menu1.current.classList.toggle("equals_result");
             }}>
-                <Link to={"/hist"}><button>history</button></Link></div>
+                <Link to={"/hist"}><img src={history_icon}/><button ref={menu3} className="history-button-btn" >HISTORY</button></Link></div>
             <div className="cal">
                 <div className='answer'>
-                    {/* <div className='expression'>
-                    <input type="text" id='calc-expression' className='form-value' value={express} />
-                </div>
-                <div className='result'>
-                    <input type="text" id='calc-result' className='form-value' value={result}/>
 
-                </div> */}
                     <div className='expression'>
 
-                        <input ref={menu} type="text" id='expresss' value={valueUpdate()} placeholder='calculator' onChange={() => {
+                        <input ref={menu} onClick={() => { menu2.current.classList.toggle("history-show"); menu3.current.classList.toggle("history-button-btn-show") }} type="text" id='expresss' value={valueUpdate()} placeholder='calculator' onChange={() => {
                             valueUpdate();
                         }} />
                     </div>
