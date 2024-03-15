@@ -483,7 +483,8 @@ const UI = () => {
     return (
         <div className="ui">
             <div ref={menu2} className='history-button' onClick={() => {
-                menu.current.classList.toggle("equals_express"); menu2.current.classList.toggle("history-show")
+                menu.current.classList.toggle("equals_express");
+                //  menu2.current.classList.toggle("history-show")
                 // menu1.current.classList.toggle("equals_result");
             }}>
                 <Link to={"/hist"}><img src={history_icon}/><button ref={menu3} className="history-button-btn" >HISTORY</button></Link></div>
@@ -492,7 +493,9 @@ const UI = () => {
 
                     <div className='expression'>
 
-                        <input ref={menu} onClick={() => { menu2.current.classList.toggle("history-show"); menu3.current.classList.toggle("history-button-btn-show") }} type="text" id='expresss' value={valueUpdate()} placeholder='calculator' onChange={() => {
+                        <input ref={menu} onClick={() => {
+                            //  menu2.current.classList.toggle("history-show"); menu3.current.classList.toggle("history-button-btn-show")
+                         }} type="text" id='expresss' value={valueUpdate()} placeholder='calculator' onChange={() => {
                             valueUpdate();
                         }} />
                     </div>

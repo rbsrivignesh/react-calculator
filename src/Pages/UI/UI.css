@@ -20,14 +20,16 @@
 
 }
 
-.history-button {
-    display: none;
-}
+.history-button {}
 
 .history-button-btn {
     border: none;
     color: transparent;
     background: transparent;
+
+    color: rgb(147, 129, 129);
+    font-size: 20px;
+    font-weight: 600;
 }
 
 
@@ -141,11 +143,7 @@ input {
     display: block;
 }
 
-.history-button-btn-show {
-    color: rgb(224, 24, 24);
-    font-size: 30px;
-    font-weight: 600;
-}
+.history-button-btn-show {}
 
 input:active {
     background: #201e1e;
