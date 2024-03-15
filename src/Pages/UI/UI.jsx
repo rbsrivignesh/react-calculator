@@ -378,12 +378,18 @@ const UI = () => {
             console.log(!express.toString().includes("."));
             console.log((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot");
             console.log(current.toString() !== "dot");
+            console.log(express );
+            console.log(express.includes("."));
             // console.log(!express.toString().includes(".") +" "+ !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot");
             if (prev.toString().length === 0 && express.toString().includes(".")) {
 
                 console.log("dot working");
             }
+            else if(!prev.toString().includes("ope") && express.toString().includes(".")){
+
+            }
             else if (!express.toString().includes(".") || !((prev.toString().substring(prev.toString().length - 3, prev.toString().length)) === "dot") && current.toString() !== "dot") {
+            
                 console.log("dot not working");
                 setexpress(express + expression);
                 setprev(prev + "dot");
