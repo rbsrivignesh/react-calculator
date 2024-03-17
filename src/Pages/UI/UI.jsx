@@ -97,18 +97,7 @@ const UI = () => {
                 // console.log(arry);
                 // console.log(test);
                 const strings = express.toString();
-                if (strings === "143") {
-                    audio.play();
-                    setTimeout(() => {
-
-                        alert("சூத்த மூடிட்டு இருக்க மாட்டியாடா ?  ");
-                    }, 500)
-
-
-
-
-                }
-
+              
                 console.log(strings.toString().substring(strings.toString().length - 1) + " " + prev.toString());
                 if (prev.toString().substring(prev.toString().length - 3) === "ope") {
                     setexpress("");
